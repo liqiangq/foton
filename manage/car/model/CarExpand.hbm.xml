@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.foton.m2m.manage.car.model">
+	<class name="CarExpand" table="CAR_EXPAND">
+		<id name="id" type="java.lang.Long">
+			<generator class="native"></generator>
+		</id>
+		<many-to-one name="address"
+			class="com.foton.m2m.manage.info.model.Address">
+			<column name="address_id" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.foton.m2m.manage.car.model">
+	<class name="CarInfo" table="CAR_INFO">
+		<id name="id" type="java.lang.Long">
+			<generator class="native"></generator>
+		</id>
+		<property name="name" type="java.lang.String" length="100" />
+		<property name="lpn" type="java.lang.String" length="10" />
+
+		<many-to-one name="carType"
+			class="com.foton.m2m.manage.info.model.CarType">
+			<column name="car_type_id" />
+		</many-to-one>
+
+		<many-to-one name="carExpand"	class="CarExpand" cascade="all">
+			<column name="car_expand_id" />
+		</many-to-one>
+		
+		<set name="companys" table="car_info_company">
+			<key column="car_info_id" />
+			<many-to-many column="companyId"
+				class="com.foton.m2m.framework.security.model.Company" />
+		</set>
+
+		<set name="positions" table="car_info_position">
+			<key column="car_info_id" />
+			<many-to-many column="posId"
+				class="com.foton.m2m.framework.security.model.Position" />
+		</set>
+
+	</class>
+</hibernate-mapping>
